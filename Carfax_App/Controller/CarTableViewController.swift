@@ -70,7 +70,7 @@ class CarTableViewController: UITableViewController {
         }
         cell.carNameLabel.text = self.carListinfo[indexPath.row].carMakeYear + " " + self.carListinfo[indexPath.row].carMake + " " + self.carListinfo[indexPath.row].carModel
         cell.priceLabel.text = String(format: "$%.2f", self.carListinfo[indexPath.row].carPrice) + " | " + (Int(self.carListinfo[indexPath.row].carMileage)).roundedWithAbbreviations + " | " + self.carListinfo[indexPath.row].carLocation
-        cell.dealerPhoneBtn.setTitle(("+1"+self.carListinfo[indexPath.row].carDealerPhone), for: .normal)
+        cell.dealerPhoneBtn.setTitle(format(with: "+X (XXX) XXX-XXXX", phone: "1" + (self.carListinfo[indexPath.row].carDealerPhone)), for: .normal)
         cell.actionBlock = {
             if let  CallURL:NSURL = NSURL(string:"tel://\(self.carListinfo[indexPath.row].carDealerPhone)") {
                 let application:UIApplication = UIApplication.shared
@@ -87,6 +87,27 @@ class CarTableViewController: UITableViewController {
             }
         }
         return cell
+    }
+    
+    func format(with mask: String, phone: String) -> String {
+        let numbers = phone.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
+        var result = ""
+        var index = numbers.startIndex // numbers iterator
+
+        // iterate over the mask characters until the iterator of numbers ends
+        for ch in mask where index < numbers.endIndex {
+            if ch == "X" {
+                // mask requires a number in this place, so take the next one
+                result.append(numbers[index])
+
+                // move numbers iterator to the next index
+                index = numbers.index(after: index)
+
+            } else {
+                result.append(ch) // just append a mask character
+            }
+        }
+        return result
     }
     
     func requestDataFromAPI(completion: @escaping ([Car]) -> Void){
