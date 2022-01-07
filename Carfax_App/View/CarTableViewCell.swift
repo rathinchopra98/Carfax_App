@@ -12,7 +12,8 @@ class CarTableViewCell: UITableViewCell {
     @IBOutlet weak var carImageView: UIImageView!
     @IBOutlet weak var carNameLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
-    @IBOutlet weak var phoneNumberLabel: UILabel!
+    @IBOutlet weak var dealerPhoneBtn: UIButton!
+    var actionBlock: (() -> Void)? = nil
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -24,4 +25,7 @@ class CarTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    @IBAction func dealerPhoneBtnClick(_ sender: Any) {
+        actionBlock?()
+    }
 }

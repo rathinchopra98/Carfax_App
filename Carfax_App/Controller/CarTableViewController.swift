@@ -9,7 +9,25 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
+extension Int {
+    var roundedWithAbbreviations: String {
+        let number = Double(self)
+        let thousand = number / 1000
+        let million = number / 1000000
+        if million >= 1.0 {
+            return "\(round(million*10)/10)M"
+        }
+        else if thousand >= 1.0 {
+            return "\(round(thousand*10)/10)K"
+        }
+        else {
+            return "\(self)"
+        }
+    }
+}
+
 class CarTableViewController: UITableViewController {
+    
     var carListinfo = [Car]()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,8 +69,23 @@ class CarTableViewController: UITableViewController {
             }
         }
         cell.carNameLabel.text = self.carListinfo[indexPath.row].carMakeYear + " " + self.carListinfo[indexPath.row].carMake + " " + self.carListinfo[indexPath.row].carModel
-        cell.priceLabel.text = String(format: "$%.2f", self.carListinfo[indexPath.row].carPrice)
-
+        cell.priceLabel.text = String(format: "$%.2f", self.carListinfo[indexPath.row].carPrice) + " | " + (Int(self.carListinfo[indexPath.row].carMileage)).roundedWithAbbreviations + " | " + self.carListinfo[indexPath.row].carLocation
+        cell.dealerPhoneBtn.setTitle(("+1"+self.carListinfo[indexPath.row].carDealerPhone), for: .normal)
+        cell.actionBlock = {
+            if let  CallURL:NSURL = NSURL(string:"tel://\(self.carListinfo[indexPath.row].carDealerPhone)") {
+                let application:UIApplication = UIApplication.shared
+                if (application.canOpenURL( CallURL as URL)) {
+                    application.open( CallURL as URL);
+                }
+                else
+                {
+                    // your number not valid
+                    let tapAlert = UIAlertController(title: "Alert!!!", message: "Your mobile number is invalid", preferredStyle: UIAlertController.Style.alert)
+                    tapAlert.addAction(UIAlertAction(title: "OK", style: .destructive, handler: nil))
+                    self.present(tapAlert, animated: true, completion: nil)
+                }
+            }
+        }
         return cell
     }
     
@@ -68,7 +101,7 @@ class CarTableViewController: UITableViewController {
                         carInfoJson = JSON(value)
                         if(carInfoJson!["listings"].count != 0){
                             for i in 0...carInfoJson!["listings"].count - 1{
-                                let item = Car(carMake: carInfoJson!["listings"][i]["make"].stringValue, carModel: carInfoJson!["listings"][i]["model"].stringValue, carLocation: carInfoJson!["listings"][i]["dealer"]["city"].stringValue, carImage: carInfoJson!["listings"][i]["images"]["firstPhoto"]["medium"].stringValue, carMakeYear: carInfoJson!["listings"][i]["year"].stringValue, carTrim: carInfoJson!["listings"][i]["trim"].stringValue, carPrice: carInfoJson!["listings"][i]["listPrice"].doubleValue, carMileage: carInfoJson!["listings"][i]["mileage"].doubleValue, carDealerPhone: carInfoJson!["listings"][i]["dealer"]["phone"].stringValue)
+                                let item = Car(carMake: carInfoJson!["listings"][i]["make"].stringValue, carModel: carInfoJson!["listings"][i]["model"].stringValue, carLocation: (carInfoJson!["listings"][i]["dealer"]["city"].stringValue + " " + carInfoJson!["listings"][i]["dealer"]["state"].stringValue), carImage: carInfoJson!["listings"][i]["images"]["firstPhoto"]["medium"].stringValue, carMakeYear: carInfoJson!["listings"][i]["year"].stringValue, carTrim: carInfoJson!["listings"][i]["trim"].stringValue, carPrice: carInfoJson!["listings"][i]["listPrice"].doubleValue, carMileage: carInfoJson!["listings"][i]["mileage"].doubleValue, carDealerPhone: carInfoJson!["listings"][i]["dealer"]["phone"].stringValue)
                                 carList.append(item)
                             }
                             self.carListinfo = carList
@@ -81,6 +114,8 @@ class CarTableViewController: UITableViewController {
                 }
         }
     }
+    
+    
 
     /*
     // Override to support conditional editing of the table view.

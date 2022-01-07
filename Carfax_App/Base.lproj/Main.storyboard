@@ -24,7 +24,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FpW-IP-gHe">
-                                            <rect key="frame" x="20" y="285" width="350" height="40"/>
+                                            <rect key="frame" x="20" y="296" width="350" height="40"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="40" id="70U-da-kMY"/>
                                             </constraints>
@@ -33,7 +33,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I9s-kU-oYa">
-                                            <rect key="frame" x="20" y="330" width="350" height="40"/>
+                                            <rect key="frame" x="20" y="341" width="350" height="40"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="40" id="rWD-f9-cJx"/>
                                             </constraints>
@@ -42,29 +42,27 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oxm-U9-vhH">
-                                            <rect key="frame" x="20" y="11" width="350" height="266"/>
+                                            <rect key="frame" x="20" y="11" width="350" height="277"/>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dem-NV-IXK">
-                                            <rect key="frame" x="20" y="375" width="350" height="40"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="40" id="uFt-cv-3tK"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dPt-fT-qol">
+                                            <rect key="frame" x="20" y="389" width="350" height="30"/>
+                                            <state key="normal" title="Button"/>
+                                            <connections>
+                                                <action selector="dealerPhoneBtnClick:" destination="iey-Wk-6Gh" eventType="touchUpInside" id="8QM-DX-j0G"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="dem-NV-IXK" firstAttribute="trailing" secondItem="dFZ-57-LMX" secondAttribute="trailingMargin" id="8be-3i-ioW"/>
+                                        <constraint firstItem="dPt-fT-qol" firstAttribute="leading" secondItem="dFZ-57-LMX" secondAttribute="leadingMargin" id="4oc-tu-F4T"/>
                                         <constraint firstItem="I9s-kU-oYa" firstAttribute="trailing" secondItem="dFZ-57-LMX" secondAttribute="trailingMargin" id="FAJ-n0-0Zi"/>
                                         <constraint firstItem="I9s-kU-oYa" firstAttribute="top" secondItem="FpW-IP-gHe" secondAttribute="bottom" constant="5" id="J1d-WD-mPF"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="dem-NV-IXK" secondAttribute="bottom" constant="4" id="KIA-g1-dMM"/>
                                         <constraint firstItem="FpW-IP-gHe" firstAttribute="leading" secondItem="dFZ-57-LMX" secondAttribute="leadingMargin" id="OVX-BF-BO9"/>
-                                        <constraint firstItem="dem-NV-IXK" firstAttribute="leading" secondItem="dFZ-57-LMX" secondAttribute="leadingMargin" id="RzL-cT-U5P"/>
+                                        <constraint firstItem="dPt-fT-qol" firstAttribute="trailing" secondItem="dFZ-57-LMX" secondAttribute="trailingMargin" id="TNC-rK-4bf"/>
                                         <constraint firstItem="FpW-IP-gHe" firstAttribute="trailing" secondItem="dFZ-57-LMX" secondAttribute="trailingMargin" id="UOy-8f-9fu"/>
                                         <constraint firstItem="oxm-U9-vhH" firstAttribute="trailing" secondItem="dFZ-57-LMX" secondAttribute="trailingMargin" id="XTa-ht-AuD"/>
-                                        <constraint firstItem="dem-NV-IXK" firstAttribute="top" secondItem="I9s-kU-oYa" secondAttribute="bottom" constant="5" id="XmZ-hZ-DI3"/>
+                                        <constraint firstItem="dPt-fT-qol" firstAttribute="top" secondItem="I9s-kU-oYa" secondAttribute="bottom" constant="8" symbolic="YES" id="fa5-GO-9zb"/>
                                         <constraint firstItem="FpW-IP-gHe" firstAttribute="top" secondItem="oxm-U9-vhH" secondAttribute="bottom" constant="8" id="hG3-DY-3rX"/>
+                                        <constraint firstItem="dPt-fT-qol" firstAttribute="bottom" secondItem="dFZ-57-LMX" secondAttribute="bottomMargin" id="l5f-j4-WqE"/>
                                         <constraint firstItem="I9s-kU-oYa" firstAttribute="leading" secondItem="dFZ-57-LMX" secondAttribute="leadingMargin" id="lng-BW-fPN"/>
                                         <constraint firstItem="oxm-U9-vhH" firstAttribute="leading" secondItem="dFZ-57-LMX" secondAttribute="leadingMargin" id="pXI-gc-EfK"/>
                                         <constraint firstItem="oxm-U9-vhH" firstAttribute="top" secondItem="dFZ-57-LMX" secondAttribute="topMargin" id="yPv-LT-H5X"/>
@@ -73,7 +71,7 @@
                                 <connections>
                                     <outlet property="carImageView" destination="oxm-U9-vhH" id="Aa0-yR-BNL"/>
                                     <outlet property="carNameLabel" destination="FpW-IP-gHe" id="qij-sc-SGO"/>
-                                    <outlet property="phoneNumberLabel" destination="dem-NV-IXK" id="rho-6K-eSG"/>
+                                    <outlet property="dealerPhoneBtn" destination="dPt-fT-qol" id="pen-hf-q4N"/>
                                     <outlet property="priceLabel" destination="I9s-kU-oYa" id="MAJ-Il-V4l"/>
                                 </connections>
                             </tableViewCell>
